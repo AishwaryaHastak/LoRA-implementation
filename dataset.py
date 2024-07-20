@@ -8,7 +8,7 @@ from torch.utils.data import DataLoader
 import torch
 
 from constants import BATCH_SIZE, DATASET_URI, MODEL_NAME, TOKEN_MAX_LENGTH
-from constants import TRAIN_SUBSET, VAL_SUBSET, TEST_SUBSET
+from constants import TRAIN_SUBSET, VAL_SUBSET, TEST_SUBSET, SEED
 
 class EmotionDataset():
 
@@ -25,21 +25,18 @@ class EmotionDataset():
     
     def __tokenize(self,data):
         return self.tokenizer(data['text'], padding="max_length", truncation=True, max_length=TOKEN_MAX_LENGTH)
-        # return tokenizer(data['text'], padding="max_length", truncation=True, max_length=TOKEN_MAX_LENGTH)
     
     def setup(self):
-        # DatasetDict.clear_cache()
         print('\nDownloading the dataset...\n')
-        dataset = load_dataset('dair-ai/emotion',download_mode='reuse_dataset_if_exists') #'force_redownload')#
+        dataset = load_dataset('dair-ai/emotion',download_mode='reuse_dataset_if_exists')
 
         print('\nTokenizing the dataset...\n')
         self.tokenizer = DistilBertTokenizer.from_pretrained(MODEL_NAME)
-        # tokenizer = DistilBertTokenizer.from_pretrained(MODEL_NAME)
         tokenized_dataset = dataset.map(self.__tokenize, batched=True)
 
-        train_dataset = tokenized_dataset['train'].shuffle().select(range(TRAIN_SUBSET))
-        val_dataset = tokenized_dataset['validation'].shuffle().select(range(VAL_SUBSET))
-        test_dataset = tokenized_dataset['test'].shuffle().select(range(TEST_SUBSET))
+        train_dataset = tokenized_dataset['train'].shuffle(seed = SEED).select(range(TRAIN_SUBSET))
+        val_dataset = tokenized_dataset['validation'].shuffle(seed = SEED).select(range(VAL_SUBSET))
+        test_dataset = tokenized_dataset['test'].shuffle(seed = SEED).select(range(TEST_SUBSET))
 
         self.train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle= True, collate_fn= self.__collate_data)
         self.val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, collate_fn= self.__collate_data)

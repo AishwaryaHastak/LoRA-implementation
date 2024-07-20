@@ -2,14 +2,15 @@
 Define LoRA Model and apply LoRA to linear layers of the attention heads.
 """
 
+import os
 import torch
 import torch.nn as nn
-from constants import RANK, ALPHA, MODEL_NAME
-
-from tqdm import tqdm
 from torch.optim import Adam 
-from torch.optim.lr_scheduler import ExponentialLR,ReduceLROnPlateau
+from torch.optim.lr_scheduler import ReduceLROnPlateau
 from transformers import DistilBertForSequenceClassification
+from tqdm import tqdm
+
+from constants import RANK, ALPHA, MODEL_NAME, NUM_LABELS
 
 
 class LoraLayer(nn.Module):
@@ -29,7 +30,7 @@ class LoraLayer(nn.Module):
 
 class LoraModel():
     def __init__(self,  rank = RANK, alpha = ALPHA, apply_lora=True):
-        self.base_model = DistilBertForSequenceClassification.from_pretrained("distilbert-base-uncased", num_labels=6)
+        self.base_model = DistilBertForSequenceClassification.from_pretrained(MODEL_NAME, num_labels=NUM_LABELS)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu") 
         self.base_model.to(self.device)
 
@@ -51,8 +52,7 @@ class LoraModel():
         optimizer = Adam(self.base_model.parameters(), lr=lr)
         scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=2)
         
-        self.base_model.train()
-        
+        self.base_model.train()        
         
         for i in range(num_epochs):
             correct_pred, train_loss, total_train = 0, 0, 0  
@@ -73,16 +73,14 @@ class LoraModel():
                 train_loss += loss.item()
                 total_train += len(labels) 
 
-                # Update progress bar every 40 steps
+                # Update progress bar every 100 steps
                 if step % 100 == 0: 
-                    # print(f'correct {correct_pred} total {total_train}')
-                    print('Step:', step, '\n [TRAIN] Loss:', train_loss/total_train, 'accuracy:', correct_pred/total_train)            
+                    print('\n [TRAIN] Loss:', train_loss/total_train, 'accuracy:', correct_pred/total_train)            
 
             self.save_model()
 
             train_loss_avg = train_loss / total_train
             train_acc_avg = correct_pred / total_train
-            # print(f'correct {correct_pred} total {total_train}')
             print(f'[TRAIN] Epoch {i+1} Loss: {train_loss_avg}, Accuracy: {train_acc_avg}')
 
             val_loss_avg, val_acc_avg = self.predict(val_loader)
