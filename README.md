@@ -34,7 +34,7 @@ The model was tested on multiple configurations of scale through combinations of
 | **Learning Rate (LR)**| 1e-4          |
 | **Token Max Length**  | 64            |
 | **Ranks**             | 1, 4, 8, 16   |
-| **Alpha**             | 1, 2          |
+| **Scale**             | 1, 2          |
 
 Performance was consistent across configurations, with a slight accuracy variation (about 0.6%). The model achieved a **classification accuracy of 93%** within a single epoch and used a rank-decomposition of 1, **reducing parameter size by 99.99%**.
 
