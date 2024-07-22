@@ -1,2 +1,4 @@
-# Implementing LoRA from scratch
+# Implementing LoRA for fine-tuning
+
+
 
