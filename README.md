@@ -14,7 +14,7 @@ Formally, if fine-tuning is represented as:
 
 ![image](https://github.com/user-attachments/assets/514f5b40-c2bc-424c-8af3-b7c876c232dd)
 
-[LoRA](https://arxiv.org/abs/2106.09685) assumes that the matrix Δ(W) also has a low intrinsic dimension. Instead of updating the entire weight matrix, LoRA focuses on a low-rank approximation of weight changes, enabling efficient adaptation to new tasks while reducing computational and memory requirements.
+[LoRA](https://arxiv.org/abs/2106.09685) assumes that the matrix Δ(W) has a low intrinsic dimension. Instead of updating the entire weight matrix, LoRA focuses on a low-rank approximation of weight changes, enabling efficient adaptation to new tasks while reducing computational and memory requirements.
 
 
 ## **Emotions Dataset from HuggingFace**
