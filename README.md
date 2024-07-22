@@ -32,7 +32,7 @@ The model was tested with a batch size of 16, a learning rate of 1e-4, and ranks
 
 Interesting trends in class prediction distribution: 
 
-![image](https://github.com/user-attachments/assets/e7c8e885-0225-4ac0-bf84-3e977d18b257)
+![image](https://github.com/user-attachments/assets/75479356-ddec-4d08-b48a-a7c1e6224baa)
 
-	• The class "surprise" has the highest proportion of misidentified counts across most configurations, indicating it is the hardest class to predict accurately.
-	• The classes "love" and "joy" generally have lower misidentification proportions, indicating these emotions are easier to predict correctly across different configurations.
+- The class "surprise" has the highest proportion of misidentified counts across most configurations, indicating it is the hardest class to predict accurately.
+- The classes "love" and "joy" generally have lower misidentification proportions, indicating these emotions are easier to predict correctly across different configurations.
