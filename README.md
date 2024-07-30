@@ -1,6 +1,6 @@
 # Implementing LoRA for Fine-Tuning
 
-To learn more about Fine-Tuning and LoRA, check out this [article](https://medium.com/@h4hastak/implementing-lora-for-fine-tuning-50396a22d13c).
+### 🔍📝👉 To learn more about LoRA and other Parameter Efficient Fine-Tuning techniques, check out this [article](https://medium.com/@h4hastak/implementing-lora-for-fine-tuning-50396a22d13c).
 
 
 ## **What is Fine-Tuning?**
