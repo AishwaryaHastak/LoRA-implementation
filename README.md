@@ -3,12 +3,12 @@
 ### 🔍📝👉 To learn more about LoRA and other Parameter Efficient Fine-Tuning techniques, check out this [article](https://medium.com/@h4hastak/implementing-lora-for-fine-tuning-50396a22d13c).
 
 
-## **What is Fine-Tuning?**
+## **What is Fine-Tuning?** 📚✨
 
 State-of-the-art language models are pre-trained on extensive data, providing a broad understanding of language and world knowledge. This allows them to generalize across various language tasks. These models are often large, with billions or even trillions of parameters, and their size continues to grow. Fine-tuning adapts a pre-trained model to specific tasks by adjusting its parameters for more targeted applications, rather than general language understanding.
 
 
-## **What is LoRA?**
+## **What is LoRA?**🔍🛠️
 
 Formally, if fine-tuning is represented as:
 
@@ -25,14 +25,14 @@ In LoRA (Low-Rank Adaptation), weight updates (ΔW) are decomposed into two smal
 
 This illustration provides a comprehensive comparison between Normal fine tuning and LoRA. In LoRA, the weight update matrix ΔW is decomposed into two matrices: A, which compresses the information into a low-dimensional space (r), and B, which reconstructs the information back to the original high-dimensional space (d). Here, r≪d, highlights how LoRA effectively reduces the complexity and resource requirements compared to traditional fine-tuning.
 
-## **Emotions Dataset from HuggingFace**
+## **Emotions Dataset from HuggingFace**🗣️💬
 
 The dataset classifies sentiments of Twitter (now X) data into 6 categories:
 
 ![image](https://github.com/user-attachments/assets/e14d3ebd-264e-4014-a6a1-86f706e790be)
 
 
-## **Results**
+## **Results**📊🏆
 
 The model was tested on multiple configurations of scale through combinations of rank and alpha.
 
@@ -47,7 +47,7 @@ The model was tested on multiple configurations of scale through combinations of
 Performance was consistent across configurations, with a slight accuracy variation (about 0.6%). The model achieved a **classification accuracy of 93%** within a single epoch and used a rank-decomposition of 1, **reducing parameter size by 99.99%**.
 
 
-## **Analyzing Misidentified Classes**
+## **Analyzing Misidentified Classes**🔍🧩
 
 Interesting trends in class prediction distribution:
 
