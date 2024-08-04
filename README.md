@@ -10,12 +10,20 @@ State-of-the-art language models are pre-trained on extensive data, providing a 
 
 ## **What is LoRA?**
 
-Formally, if fine-tuning is represented as: 
+Formally, if fine-tuning is represented as:
 
-![image](https://github.com/user-attachments/assets/514f5b40-c2bc-424c-8af3-b7c876c232dd)
+![ft](https://github.com/user-attachments/assets/0a7488cb-e71b-4ce7-bd74-122e44cbee54)
 
-[LoRA](https://arxiv.org/abs/2106.09685) assumes that the matrix Δ(W) has a low intrinsic dimension. Instead of updating the entire weight matrix, LoRA focuses on a low-rank approximation of weight changes, enabling efficient adaptation to new tasks while reducing computational and memory requirements.
+Normal Fine-Tuning performs weight updates (ΔW) across the entire pre-trained weight matrix. This approach adjusts the full set of weights, which can be computationally expensive and memory-intensive.LoRA assumes that the matrix (ΔW) also has a low intrinsic dimension. This means that rather than updating the entire weight matrix, LoRA focuses on a low-rank approximation of the weight changes, which can efficiently adapt the model to new tasks while maintaining a reduced computational and memory footprint.
 
+![lora](https://github.com/user-attachments/assets/6775b9c1-5630-43c9-aa4a-8cba94c9916e)
+
+In LoRA (Low-Rank Adaptation), weight updates (ΔW) are decomposed into two smaller matrices, A and B, with reduced dimensions. This method captures the weight changes efficiently while significantly reducing computational and memory requirements.
+
+![difference](https://github.com/user-attachments/assets/277712cc-315a-4abe-9fd3-4a1f475aef7c)
+
+
+This illustration provides a comprehensive comparison between Normal fine tuning and LoRA. In LoRA, the weight update matrix ΔW is decomposed into two matrices: A, which compresses the information into a low-dimensional space (r), and B, which reconstructs the information back to the original high-dimensional space (d). Here, r≪d, highlights how LoRA effectively reduces the complexity and resource requirements compared to traditional fine-tuning.
 
 ## **Emotions Dataset from HuggingFace**
 
