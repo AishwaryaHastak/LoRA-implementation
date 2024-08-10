@@ -8,7 +8,7 @@
 State-of-the-art language models are pre-trained on extensive data, providing a broad understanding of language and world knowledge. This allows them to generalize across various language tasks. These models are often large, with billions or even trillions of parameters, and their size continues to grow. Fine-tuning adapts a pre-trained model to specific tasks by adjusting its parameters for more targeted applications, rather than general language understanding.
 
 
-## **What is LoRA?**🔍🛠️
+## **What is LoRA?** 🔍🛠️
 
 Formally, if fine-tuning is represented as:
 
